@@ -1,7 +1,8 @@
 import http, { IncomingMessage, ServerResponse } from 'http';
 import { URL } from 'url';
 import dotenv from 'dotenv';
-import { sendResponse } from './utils/response.js';
+import { handleRequest, sendResponse } from './utils/response.js';
+import { searchUsers } from './controllers/userController.js';
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ const server = http.createServer((req: IncomingMessage, res: ServerResponse) => 
 
   if (pathname === '/users') {
     if (req.method === 'POST') {
-      console.info('test');
+      handleRequest(searchUsers, req, res);
     } else {
       sendResponse(res, 405, 'Method Not Allowed');
     }
