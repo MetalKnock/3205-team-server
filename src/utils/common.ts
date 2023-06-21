@@ -19,7 +19,7 @@ function getReqData(req: IncomingMessage): Promise<string> {
 }
 
 function isValidNumber(number: string) {
-  return number.match(/^[0-9]{6}$/g);
+  return /^[0-9]{6}$/.test(number);
 }
 
 export { getReqData, isValidNumber };
